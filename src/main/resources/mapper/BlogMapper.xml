@@ -3,7 +3,21 @@
 <mapper namespace="com.fluently.blog.dao.BlogDao">
     <insert id="insertBlog" parameterType="com.fluently.blog.model.BlogVO">
 
-        insert into blog (id, title,time,content,vistor_count) values (#{id}, #{title}, #{time}, #{content}, #{vistor_count})
+        insert into blog (id, title,time,vistor_count) values (#{id}, #{title}, #{time}, #{vistor_count})
 
     </insert>
+
+    <insert id="insertBlogDetail" parameterType="com.fluently.blog.model.BlogDetailVO">
+
+        insert into blog_detail (id, blog_id, content) values (#{id}, #{blog_id}, #{content})
+
+    </insert>
+
+    <select id="getAllBlogList" resultType="com.fluently.blog.model.BlogVO">
+        select * from blog
+    </select>
+
+    <select id="getBlogDeitailById" resultType="com.fluently.blog.model.BlogDetailVO">
+         select * from blog_detail where blog_id = #{blogId}
+     </select>
 </mapper>
