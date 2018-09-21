@@ -8,7 +8,7 @@ import com.fluently.blog.utils.RandomUUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -23,10 +23,9 @@ public class BlogServiceImpl implements BlogService {
     public void insertBlog(BlogVO blogVO) {
         String blogId = randomUUID.createUUID();
         String blogDetailId = randomUUID.createUUID();
-        Date date = new Date();
 
         blogVO.setId(blogId);
-        blogVO.setTime(date.toString());
+        blogVO.setTime(new Timestamp(System.currentTimeMillis()));
 
         BlogDetailVO blogDetailVO = new BlogDetailVO();
         blogDetailVO.setId(blogDetailId);

@@ -1,9 +1,12 @@
 package com.fluently.blog.model;
 
+
+import java.sql.Timestamp;
+
 public class BlogVO {
     private String id;
     private String title;
-    private String time;
+    private Timestamp time;
     private String content;
     private String vistor_count;
 
@@ -23,11 +26,11 @@ public class BlogVO {
         this.title = title;
     }
 
-    public String getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 
