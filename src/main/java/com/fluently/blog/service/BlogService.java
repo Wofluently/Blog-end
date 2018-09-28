@@ -15,4 +15,6 @@ public interface BlogService {
     public BlogVO getOneBlogListById(String blogId);
 
     public void deleteBlogById(String blogId);
+
+    public void updateBLog(BlogVO blogVO);
 }

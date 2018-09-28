@@ -22,4 +22,8 @@ public interface BlogDao {
     public void deleteBlogById(@Param("blogId") String blogId);
 
     public void deleteBlogDetailById(@Param("blogId") String blogId);
+
+    public void updateBlog(BlogVO blogDetailVO);
+
+    public void updateBlogDetail(BlogVO blogDetailVO);
 }

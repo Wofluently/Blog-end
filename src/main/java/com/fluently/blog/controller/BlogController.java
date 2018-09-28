@@ -40,4 +40,9 @@ public class BlogController {
         blogService.deleteBlogById(blogId);
     }
 
+    @RequestMapping(value = "/updateBlog", method = RequestMethod.POST)
+    public void updateBlog(@RequestBody BlogVO blogVO) {
+        blogService.updateBLog(blogVO);
+    }
+
 }

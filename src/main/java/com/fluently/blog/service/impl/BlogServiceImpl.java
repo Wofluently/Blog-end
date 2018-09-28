@@ -56,4 +56,11 @@ public class BlogServiceImpl implements BlogService {
         blogDao.deleteBlogById(blogId);
         blogDao.deleteBlogDetailById(blogId);
     }
+
+    @Override
+    public void updateBLog(BlogVO blogVO) {
+        blogVO.setTime(new Timestamp(System.currentTimeMillis()));
+        blogDao.updateBlog(blogVO);
+        blogDao.updateBlogDetail(blogVO);
+    }
 }

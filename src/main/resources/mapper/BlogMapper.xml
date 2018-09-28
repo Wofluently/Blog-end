@@ -32,4 +32,16 @@
     <delete id="deleteBlogDetailById" parameterType="String">
         delete from blog_detail where blog_id=#{blogId}
     </delete>
+
+    <update id="updateBlog" parameterType="com.fluently.blog.model.BlogVO">
+
+        UPDATE blog SET title = #{title},time=#{time} WHERE id = #{id}
+
+    </update>
+
+    <update id="updateBlogDetail" parameterType="com.fluently.blog.model.BlogVO">
+
+        update blog_detail set content=#{content} where blog_id = #{id}
+
+    </update>
 </mapper>
