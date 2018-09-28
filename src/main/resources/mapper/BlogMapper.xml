@@ -14,7 +14,7 @@
     </insert>
 
     <select id="getAllBlogList" resultType="com.fluently.blog.model.BlogVO">
-        select * from blog
+        select * from blog ORDER BY time DESC
     </select>
 
     <select id="getBlogDeitailById" resultType="com.fluently.blog.model.BlogDetailVO">
