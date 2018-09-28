@@ -11,4 +11,8 @@ public interface BlogService {
     public List<BlogVO> getAllBlogList();
 
     public BlogDetailVO getBlogDeitailById(String blogId);
+
+    public BlogVO getOneBlogListById(String blogId);
+
+    public void deleteBlogById(String blogId);
 }

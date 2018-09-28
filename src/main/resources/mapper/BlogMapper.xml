@@ -19,5 +19,17 @@
 
     <select id="getBlogDeitailById" resultType="com.fluently.blog.model.BlogDetailVO">
          select * from blog_detail where blog_id = #{blogId}
-     </select>
+    </select>
+
+    <select id="getOneBlogListById" resultType="com.fluently.blog.model.BlogVO">
+         select * from blog where id =  #{blogId}
+    </select>
+
+    <delete id="deleteBlogById" parameterType="String">
+        delete from blog where id=#{blogId}
+    </delete>
+
+    <delete id="deleteBlogDetailById" parameterType="String">
+        delete from blog_detail where blog_id=#{blogId}
+    </delete>
 </mapper>

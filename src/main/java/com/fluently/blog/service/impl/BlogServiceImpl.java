@@ -45,4 +45,15 @@ public class BlogServiceImpl implements BlogService {
     public BlogDetailVO getBlogDeitailById(String blogId) {
         return blogDao.getBlogDeitailById(blogId);
     }
+
+    @Override
+    public BlogVO getOneBlogListById(String blogId) {
+        return blogDao.getOneBlogListById(blogId);
+    }
+
+    @Override
+    public void deleteBlogById(String blogId) {
+        blogDao.deleteBlogById(blogId);
+        blogDao.deleteBlogDetailById(blogId);
+    }
 }

@@ -29,4 +29,15 @@ public class BlogController {
     public BlogDetailVO getBlogDeitailById(@RequestParam("blogId") String blogId) {
         return blogService.getBlogDeitailById(blogId);
     }
+
+    @RequestMapping(value = "/getOneBlogListById", method = RequestMethod.POST)
+    public BlogVO getOneBlogListById(@RequestParam("blogId") String blogId) {
+        return blogService.getOneBlogListById(blogId);
+    }
+
+    @RequestMapping(value = "/deleteBlogById", method = RequestMethod.POST)
+    public void deleteBlogById(@RequestParam("blogId") String blogId) {
+        blogService.deleteBlogById(blogId);
+    }
+
 }

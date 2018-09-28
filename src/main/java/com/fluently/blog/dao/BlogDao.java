@@ -16,4 +16,10 @@ public interface BlogDao {
     public List<BlogVO> getAllBlogList();
 
     public BlogDetailVO getBlogDeitailById(@Param("blogId") String blogId);
+
+    public BlogVO getOneBlogListById(@Param("blogId") String blogId);
+
+    public void deleteBlogById(@Param("blogId") String blogId);
+
+    public void deleteBlogDetailById(@Param("blogId") String blogId);
 }
