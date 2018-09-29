@@ -63,4 +63,11 @@ public class BlogServiceImpl implements BlogService {
         blogDao.updateBlog(blogVO);
         blogDao.updateBlogDetail(blogVO);
     }
+
+    @Override
+    public void addVistorCount(String blogId) {
+        BlogVO blogVO = blogDao.getOneBlogListById(blogId);
+        int count = blogVO.getVistor_count();
+        blogDao.addVistorCount(blogId, ++count);
+    }
 }

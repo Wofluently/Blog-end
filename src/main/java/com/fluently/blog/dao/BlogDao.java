@@ -26,4 +26,6 @@ public interface BlogDao {
     public void updateBlog(BlogVO blogDetailVO);
 
     public void updateBlogDetail(BlogVO blogDetailVO);
+
+    public void addVistorCount(@Param("blogId") String blogId, @Param("count") Integer count);
 }

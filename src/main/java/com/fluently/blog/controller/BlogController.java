@@ -45,4 +45,8 @@ public class BlogController {
         blogService.updateBLog(blogVO);
     }
 
+    @RequestMapping(value = "/addVistorCount", method = RequestMethod.POST)
+    public void addVistorCount(@RequestParam("blogId") String blogId) {
+        blogService.addVistorCount(blogId);
+    }
 }

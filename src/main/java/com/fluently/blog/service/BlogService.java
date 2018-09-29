@@ -17,4 +17,6 @@ public interface BlogService {
     public void deleteBlogById(String blogId);
 
     public void updateBLog(BlogVO blogVO);
+
+    public void addVistorCount(String blogId);
 }

@@ -8,7 +8,7 @@ public class BlogVO {
     private String title;
     private Timestamp time;
     private String content;
-    private String vistor_count;
+    private Integer vistor_count;
 
     public String getId() {
         return id;
@@ -42,11 +42,11 @@ public class BlogVO {
         this.content = content;
     }
 
-    public String getVistor_count() {
+    public Integer getVistor_count() {
         return vistor_count;
     }
 
-    public void setVistor_count(String vistor_count) {
+    public void setVistor_count(Integer vistor_count) {
         this.vistor_count = vistor_count;
     }
 }

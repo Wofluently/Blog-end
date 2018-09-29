@@ -44,4 +44,10 @@
         update blog_detail set content=#{content} where blog_id = #{id}
 
     </update>
+
+    <update id="addVistorCount">
+
+        UPDATE blog SET vistor_count = #{count} WHERE id = #{blogId}
+
+    </update>
 </mapper>
