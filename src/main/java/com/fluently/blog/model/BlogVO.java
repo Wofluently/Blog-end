@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class BlogVO {
     private String id;
     private String title;
-    private Timestamp time;
+    private Long time;
     private String content;
     private Integer vistor_count;
 
@@ -26,11 +26,11 @@ public class BlogVO {
         this.title = title;
     }
 
-    public Timestamp getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 

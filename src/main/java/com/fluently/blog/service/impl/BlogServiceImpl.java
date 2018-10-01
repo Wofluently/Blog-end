@@ -25,7 +25,7 @@ public class BlogServiceImpl implements BlogService {
         String blogDetailId = randomUUID.createUUID();
 
         blogVO.setId(blogId);
-        blogVO.setTime(new Timestamp(System.currentTimeMillis()));
+        blogVO.setTime(System.currentTimeMillis());
 
         BlogDetailVO blogDetailVO = new BlogDetailVO();
         blogDetailVO.setId(blogDetailId);
@@ -59,7 +59,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void updateBLog(BlogVO blogVO) {
-        blogVO.setTime(new Timestamp(System.currentTimeMillis()));
+        blogVO.setTime(System.currentTimeMillis());
         blogDao.updateBlog(blogVO);
         blogDao.updateBlogDetail(blogVO);
     }
