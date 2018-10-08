@@ -26,19 +26,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("============================拦截器启动==============================");
         //获取session里的登录状态值
         String username = (String) request.getSession().getAttribute("username");
-        String userid = (String) request.getSession().getAttribute("userid");
+        String userid = (String) request.getSession().getAttribute("id");
         System.out.println(username);
         System.out.println(userid);
         //如果登录状态不为空则返回true，返回true则会执行相应controller的方法
-        if (username != null) {
+        if (username != null && userid != null) {
             return true;
         }
         //如果登录状态为空则重定向到登录页面，并返回false，不执行原来controller的方法
         response.setStatus(333);
-        //response.sendRedirect("http://localhost:8081/#/blogList");
-
         return false;
-
     }
 
 }
