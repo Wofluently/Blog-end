@@ -34,7 +34,10 @@ public class LoginController {
         } else {
             return false;
         }
+    }
 
-
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
+        return "test";
     }
 }

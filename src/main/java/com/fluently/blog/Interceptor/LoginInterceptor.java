@@ -34,7 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         //如果登录状态为空则重定向到登录页面，并返回false，不执行原来controller的方法
-        response.setStatus(333);
+        response.setStatus(401);
         return false;
     }
 
