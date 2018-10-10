@@ -6,7 +6,7 @@ public class UserVO {
     private String password;
     private String address;
     private String email;
-    private String signatrue;
+    private String signature;
     private String space;
 
     public String getId() {
@@ -49,12 +49,12 @@ public class UserVO {
         this.email = email;
     }
 
-    public String getSignatrue() {
-        return signatrue;
+    public String getSignature() {
+        return signature;
     }
 
-    public void setSignatrue(String signatrue) {
-        this.signatrue = signatrue;
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     public String getSpace() {

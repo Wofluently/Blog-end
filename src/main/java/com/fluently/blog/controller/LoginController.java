@@ -3,10 +3,7 @@ package com.fluently.blog.controller;
 import com.fluently.blog.model.UserVO;
 import com.fluently.blog.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +33,12 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test() {
-        return "test";
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public void addUser(@RequestBody UserVO userVO) {
+        loginService.addUser(userVO);
+    }
+
+    @RequestMapping(value = "/isSession", method = RequestMethod.GET)
+    public void isSession() {
     }
 }

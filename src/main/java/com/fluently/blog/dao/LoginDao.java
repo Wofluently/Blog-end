@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface LoginDao {
     public UserVO findUser(@Param("username") String username, @Param("password") String password);
+
+    public void addUser(UserVO userVO);
 }
