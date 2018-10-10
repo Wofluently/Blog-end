@@ -11,4 +11,10 @@
         insert into user (id, username, password, address, email, signature, space)
         values (#{id}, #{username}, #{password}, #{address}, #{email}, #{signature}, #{space})
     </insert>
+
+    <select id="getCurrentUser" parameterType="java.lang.String" resultType="com.fluently.blog.model.UserVO">
+
+        select * from user where id=#{userId}
+
+    </select>
 </mapper>

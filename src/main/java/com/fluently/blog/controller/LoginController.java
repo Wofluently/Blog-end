@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/blog")
@@ -19,14 +18,8 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Boolean login(HttpServletRequest request, HttpServletResponse response, @RequestParam("username") String username, @RequestParam("password") String password) {
         UserVO userVO = loginService.findUser(username, password);
-
         if (userVO != null) {
-            //使用request对象的getSession()获取session，如果session不存在则创建一个
-            HttpSession session = request.getSession();
-            //将数据存储到session中
-            session.setAttribute("username", userVO.getUsername());
-            session.setAttribute("id", userVO.getId());
-            session.setMaxInactiveInterval(60 * 20); //单位秒
+            loginService.setSession(request, userVO);
             return true;
         } else {
             return false;
@@ -36,6 +29,12 @@ public class LoginController {
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public void addUser(@RequestBody UserVO userVO) {
         loginService.addUser(userVO);
+    }
+
+    @RequestMapping(value = "/curUserInfo", method = RequestMethod.POST)
+    public UserVO userInfo(HttpServletRequest request) {
+        String userid = (String) request.getSession().getAttribute("id");
+        return loginService.getCurrentUser(userid);
     }
 
     @RequestMapping(value = "/isSession", method = RequestMethod.GET)

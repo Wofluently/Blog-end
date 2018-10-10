@@ -9,4 +9,6 @@ public interface LoginDao {
     public UserVO findUser(@Param("username") String username, @Param("password") String password);
 
     public void addUser(UserVO userVO);
+
+    public UserVO getCurrentUser(@Param("userId") String userId);
 }
