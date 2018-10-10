@@ -28,4 +28,8 @@ public interface BlogDao {
     public void updateBlogDetail(BlogVO blogDetailVO);
 
     public void addVistorCount(@Param("blogId") String blogId, @Param("count") Integer count);
+
+    public List<BlogVO> getMyBlog(@Param("userId") String userId);
+
+    public List<BlogVO> getAllPublicBlog();
 }

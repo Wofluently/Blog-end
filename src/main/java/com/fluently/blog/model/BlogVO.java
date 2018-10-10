@@ -9,6 +9,8 @@ public class BlogVO {
     private Long time;
     private String content;
     private Integer vistor_count;
+    private Integer visible;
+    private String owner;
 
     public String getId() {
         return id;
@@ -48,5 +50,21 @@ public class BlogVO {
 
     public void setVistor_count(Integer vistor_count) {
         this.vistor_count = vistor_count;
+    }
+
+    public Integer getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Integer visible) {
+        this.visible = visible;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

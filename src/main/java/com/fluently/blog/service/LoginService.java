@@ -11,5 +11,5 @@ public interface LoginService {
 
     public void addUser(UserVO userVO);
 
-    public UserVO getCurrentUser(String userId);
+    public UserVO getCurrentUser(HttpServletRequest request);
 }

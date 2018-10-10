@@ -41,7 +41,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public UserVO getCurrentUser(String userId) {
+    public UserVO getCurrentUser(HttpServletRequest request) {
+        String userId = (String) request.getSession().getAttribute("id");
         return loginDao.getCurrentUser(userId);
     }
 }

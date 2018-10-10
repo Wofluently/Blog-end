@@ -33,8 +33,7 @@ public class LoginController {
 
     @RequestMapping(value = "/curUserInfo", method = RequestMethod.POST)
     public UserVO userInfo(HttpServletRequest request) {
-        String userid = (String) request.getSession().getAttribute("id");
-        return loginService.getCurrentUser(userid);
+        return loginService.getCurrentUser(request);
     }
 
     @RequestMapping(value = "/isSession", method = RequestMethod.GET)

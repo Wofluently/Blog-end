@@ -3,7 +3,7 @@
 <mapper namespace="com.fluently.blog.dao.BlogDao">
     <insert id="insertBlog" parameterType="com.fluently.blog.model.BlogVO">
 
-        insert into blog (id, title,time,vistor_count) values (#{id}, #{title}, #{time}, #{vistor_count})
+        insert into blog (id, title,time,vistor_count, visible, owner) values (#{id}, #{title}, #{time}, #{vistor_count}, #{visible}, #{owner})
 
     </insert>
 
@@ -35,7 +35,7 @@
 
     <update id="updateBlog" parameterType="com.fluently.blog.model.BlogVO">
 
-        UPDATE blog SET title = #{title},time=#{time} WHERE id = #{id}
+        UPDATE blog SET title = #{title}, time=#{time}, visible=#{visible} WHERE id = #{id}
 
     </update>
 
@@ -50,4 +50,12 @@
         UPDATE blog SET vistor_count = #{count} WHERE id = #{blogId}
 
     </update>
+
+    <select id="getMyBlog" parameterType="java.lang.String" resultType="com.fluently.blog.model.BlogVO">
+        select * from blog WHERE owner=#{userId} ORDER BY time DESC
+    </select>
+
+    <select id="getAllPublicBlog" resultType="com.fluently.blog.model.BlogVO">
+        select * from blog WHERE visible=1 ORDER BY time DESC
+    </select>
 </mapper>

@@ -2,10 +2,13 @@ package com.fluently.blog.controller;
 
 import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
+import com.fluently.blog.model.UserVO;
 import com.fluently.blog.service.BlogService;
+import com.fluently.blog.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -15,9 +18,12 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private LoginService loginService;
+
     @RequestMapping(value = "/insertBlog", method = RequestMethod.POST)
-    public void insertBlog(@RequestBody BlogVO blogVO) {
-        blogService.insertBlog(blogVO);
+    public void insertBlog(HttpServletRequest request, @RequestBody BlogVO blogVO) {
+        blogService.insertBlog(blogVO, loginService.getCurrentUser(request).getId());
     }
 
     @RequestMapping(value = "/getAllBlogList", method = RequestMethod.POST)
@@ -48,5 +54,15 @@ public class BlogController {
     @RequestMapping(value = "/addVistorCount", method = RequestMethod.POST)
     public void addVistorCount(@RequestParam("blogId") String blogId) {
         blogService.addVistorCount(blogId);
+    }
+
+    @RequestMapping(value = "/getMyBlog", method = RequestMethod.POST)
+    public List<BlogVO> getMyBlog(HttpServletRequest request) {
+        return blogService.getMyBlog(request);
+    }
+
+    @RequestMapping(value = "/getAllPublicBlog", method = RequestMethod.POST)
+    public List<BlogVO> getAllPublicBlog() {
+        return blogService.getAllPublicBlog();
     }
 }

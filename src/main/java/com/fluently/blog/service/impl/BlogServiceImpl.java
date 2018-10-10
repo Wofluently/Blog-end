@@ -8,6 +8,7 @@ import com.fluently.blog.utils.RandomUUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -19,12 +20,13 @@ public class BlogServiceImpl implements BlogService {
     private RandomUUID randomUUID;
 
     @Override
-    public void insertBlog(BlogVO blogVO) {
+    public void insertBlog(BlogVO blogVO, String userId) {
         String blogId = randomUUID.createUUID();
         String blogDetailId = randomUUID.createUUID();
 
         blogVO.setId(blogId);
         blogVO.setTime(System.currentTimeMillis());
+        blogVO.setOwner(userId);
 
         BlogDetailVO blogDetailVO = new BlogDetailVO();
         blogDetailVO.setId(blogDetailId);
@@ -68,5 +70,16 @@ public class BlogServiceImpl implements BlogService {
         BlogVO blogVO = blogDao.getOneBlogListById(blogId);
         int count = blogVO.getVistor_count();
         blogDao.addVistorCount(blogId, ++count);
+    }
+
+    @Override
+    public List<BlogVO> getMyBlog(HttpServletRequest request) {
+        String userId = (String) request.getSession().getAttribute("id");
+        return blogDao.getMyBlog(userId);
+    }
+
+    @Override
+    public List<BlogVO> getAllPublicBlog() {
+        return blogDao.getAllPublicBlog();
     }
 }
