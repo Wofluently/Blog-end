@@ -14,7 +14,7 @@ public class InterceptorConfigurerAdapter extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         // addPathPatterns 添加路径
         // excludePathPatterns 排除路径
-//        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/blog/login").excludePathPatterns("/blog/addUser");
-//        super.addInterceptors(registry);
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/blog/login").excludePathPatterns("/blog/addUser");
+        super.addInterceptors(registry);
     }
 }
