@@ -16,7 +16,7 @@ public class UploadDownLoadController {
 
     @RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
     public String uploadImage(@RequestParam(value = "file") MultipartFile file) throws RuntimeException {
-        String uploadDir = "/Users/liuchang/Desktop/upload/";
+        String uploadDir = "/root/blog_upload/img/";
         if (file.isEmpty()) {
             return "文件不能为空";
         }
@@ -51,7 +51,7 @@ public class UploadDownLoadController {
     //文件下载相关代码
     @RequestMapping(value = "/downloadImage", method = RequestMethod.GET)
     public String downloadImage(@RequestParam(value = "imageName") String imageName, HttpServletRequest request, HttpServletResponse response) {
-        String uploadDir = "/Users/liuchang/Desktop/upload/";
+        String uploadDir = "/root/blog_upload/img/";
         System.out.println("the imageName is : " + imageName);
         String fileUrl = uploadDir + imageName;
         if (fileUrl != null) {
