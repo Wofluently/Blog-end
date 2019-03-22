@@ -5,7 +5,7 @@ import com.fluently.blog.model.UserVO;
 import javax.servlet.http.HttpServletRequest;
 
 public interface LoginService {
-    public void setSession(HttpServletRequest req, UserVO userVO);
+    public String setSession(HttpServletRequest req, UserVO userVO);
 
     public UserVO findUser(String username, String password);
 

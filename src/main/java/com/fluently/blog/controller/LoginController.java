@@ -16,13 +16,12 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Boolean login(HttpServletRequest request, HttpServletResponse response, @RequestParam("username") String username, @RequestParam("password") String password) {
+    public String login(HttpServletRequest request, HttpServletResponse response, @RequestParam("username") String username, @RequestParam("password") String password) {
         UserVO userVO = loginService.findUser(username, password);
         if (userVO != null) {
-            loginService.setSession(request, userVO);
-            return true;
+            return loginService.setSession(request, userVO);
         } else {
-            return false;
+            return "";
         }
     }
 

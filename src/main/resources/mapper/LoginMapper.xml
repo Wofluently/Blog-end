@@ -3,7 +3,7 @@
 <mapper namespace="com.fluently.blog.dao.LoginDao">
     <select id="findUser" parameterType="java.lang.String" resultType="com.fluently.blog.model.UserVO">
 
-        select * from user where username=#{username} and password=#{password}
+        select * from user where binary username=#{username} and password=#{password}
 
     </select>
 
