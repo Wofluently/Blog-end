@@ -5,6 +5,8 @@ import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
 import com.fluently.blog.service.BlogService;
 import com.fluently.blog.utils.RandomUUID;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +81,10 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogVO> getAllPublicBlog() {
-        return blogDao.getAllPublicBlog();
+    public PageInfo<BlogVO> getAllPublicBlog() {
+        PageHelper.startPage(8, 5);
+        List<BlogVO> blogList = blogDao.getAllPublicBlog();
+        PageInfo<BlogVO> pageInfo = new PageInfo<BlogVO>(blogList);
+        return pageInfo;
     }
 }

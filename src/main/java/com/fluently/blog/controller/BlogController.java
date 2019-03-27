@@ -2,9 +2,9 @@ package com.fluently.blog.controller;
 
 import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
-import com.fluently.blog.model.UserVO;
 import com.fluently.blog.service.BlogService;
 import com.fluently.blog.service.LoginService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,7 +62,7 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/getAllPublicBlog", method = RequestMethod.POST)
-    public List<BlogVO> getAllPublicBlog() {
+    public PageInfo<BlogVO> getAllPublicBlog() {
         return blogService.getAllPublicBlog();
     }
 }

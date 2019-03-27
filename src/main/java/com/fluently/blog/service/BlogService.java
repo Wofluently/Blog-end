@@ -2,6 +2,7 @@ package com.fluently.blog.service;
 
 import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
+import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -23,5 +24,5 @@ public interface BlogService {
 
     public List<BlogVO> getMyBlog(HttpServletRequest request);
 
-    public List<BlogVO> getAllPublicBlog();
+    public PageInfo<BlogVO> getAllPublicBlog();
 }
