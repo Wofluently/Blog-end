@@ -2,6 +2,7 @@ package com.fluently.blog.controller;
 
 import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
+import com.fluently.blog.model.PageBean;
 import com.fluently.blog.service.BlogService;
 import com.fluently.blog.service.LoginService;
 import com.github.pagehelper.PageInfo;
@@ -57,12 +58,12 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/getMyBlog", method = RequestMethod.POST)
-    public List<BlogVO> getMyBlog(HttpServletRequest request) {
-        return blogService.getMyBlog(request);
+    public PageInfo<BlogVO> getMyBlog(HttpServletRequest request, @RequestBody PageBean pageBean) {
+        return blogService.getMyBlog(request, pageBean);
     }
 
     @RequestMapping(value = "/getAllPublicBlog", method = RequestMethod.POST)
-    public PageInfo<BlogVO> getAllPublicBlog() {
-        return blogService.getAllPublicBlog();
+    public PageInfo<BlogVO> getAllPublicBlog(@RequestBody PageBean pageBean) {
+        return blogService.getAllPublicBlog(pageBean);
     }
 }

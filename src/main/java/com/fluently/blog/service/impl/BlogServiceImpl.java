@@ -3,6 +3,7 @@ package com.fluently.blog.service.impl;
 import com.fluently.blog.dao.BlogDao;
 import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
+import com.fluently.blog.model.PageBean;
 import com.fluently.blog.service.BlogService;
 import com.fluently.blog.utils.RandomUUID;
 import com.github.pagehelper.PageHelper;
@@ -75,14 +76,17 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogVO> getMyBlog(HttpServletRequest request) {
+    public PageInfo<BlogVO> getMyBlog(HttpServletRequest request, PageBean pageBean) {
         String userId = (String) request.getSession().getAttribute("id");
-        return blogDao.getMyBlog(userId);
+        PageHelper.startPage(pageBean.getPageNum(), pageBean.getPageSize());
+        List<BlogVO> blogList = blogDao.getMyBlog(userId);
+        PageInfo<BlogVO> pageInfo = new PageInfo<BlogVO>(blogList);
+        return pageInfo;
     }
 
     @Override
-    public PageInfo<BlogVO> getAllPublicBlog() {
-        PageHelper.startPage(8, 5);
+    public PageInfo<BlogVO> getAllPublicBlog(PageBean pageBean) {
+        PageHelper.startPage(pageBean.getPageNum(), pageBean.getPageSize());
         List<BlogVO> blogList = blogDao.getAllPublicBlog();
         PageInfo<BlogVO> pageInfo = new PageInfo<BlogVO>(blogList);
         return pageInfo;

@@ -2,6 +2,7 @@ package com.fluently.blog.service;
 
 import com.fluently.blog.model.BlogDetailVO;
 import com.fluently.blog.model.BlogVO;
+import com.fluently.blog.model.PageBean;
 import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public interface BlogService {
 
     public void addVistorCount(String blogId);
 
-    public List<BlogVO> getMyBlog(HttpServletRequest request);
+    public PageInfo<BlogVO> getMyBlog(HttpServletRequest request, PageBean pageBean);
 
-    public PageInfo<BlogVO> getAllPublicBlog();
+    public PageInfo<BlogVO> getAllPublicBlog(PageBean pageBean);
 }
