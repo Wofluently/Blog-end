@@ -1,5 +1,6 @@
 package com.fluently.blog.controller;
 
+import com.aliyun.oss.OSSClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,35 +17,26 @@ public class UploadDownLoadController {
 
     @RequestMapping(value = "/uploadImage", method = RequestMethod.POST)
     public String uploadImage(@RequestParam(value = "file") MultipartFile file) throws RuntimeException {
-        String uploadDir = "/root/blog_upload/img/";
-        if (file.isEmpty()) {
-            return "文件不能为空";
-        }
-        // 获取文件名
-        String fileName = file.getOriginalFilename();
-        System.out.println("上传的文件名为：" + fileName);
-        // 获取文件的后缀名
-        String suffixName = fileName.substring(fileName.lastIndexOf("."));
-        System.out.println("上传的后缀名为：" + suffixName);
-        // 文件上传后的路径
-        String filePath = uploadDir;
-        // 解决中文问题，liunx下中文路径，图片显示问题
-        // fileName = UUID.randomUUID() + suffixName;
-        File dest = new File(filePath + fileName);
-        // 检测是否存在目录
-        if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdirs();
-        }
+        // Endpoint以杭州为例，其它Region请按实际情况填写。
+        String endpoint = "http://oss-cn-beijing.aliyuncs.com";
+        // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
+        String accessKeyId = "LTAIXQz7BS0vw70l";
+        String accessKeySecret = "IS4rcFF1RstxWckBcrWNx27HCc9hDQ";
+
+        // 创建OSSClient实例。
+        OSSClient ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
+
+        // 上传文件流。
         try {
-            file.transferTo(dest);
-            System.out.println("上传成功后的文件路径未：" + filePath + fileName);
-            return fileName + "文件上传成功";
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            ossClient.putObject("changlau", file.getOriginalFilename(), file.getInputStream());
+        } catch (Exception ex) {
+            return "";
         }
-        return "文件上传失败";
+
+        // 关闭OSSClient。
+        ossClient.shutdown();
+        // 返回访问链接
+        return "https://changlau.oss-cn-beijing.aliyuncs.com/" + file.getOriginalFilename();
     }
 
 
